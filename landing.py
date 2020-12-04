@@ -3,14 +3,18 @@ from PIL import ImageTk,Image
 
 #root layout
 root = Tk()
-root.geometry('500x500')
-
-# Fullscreen Attrs
-root.attributes("-fullscreen", True)  
-root.bind("<Escape>", lambda event: root.attributes("-fullscreen", False))
+root.geometry('700x500')
 
 # image as a bg
-img = ImageTk.PhotoImage(Image.open("./Assets/landing.png"))
-label = Label(image=img).pack()
+load = Image.open('./Assets/landing.png')
+render = ImageTk.PhotoImage(load)
+img = Label(root, image=render)
+img.place(x=0, y=0)
+
+
+# Buttons
+add_bus = Button(root, text="Add Bus").pack()
+search_bus = Button(root, text="Search Bus").pack()
+
 
 root.mainloop()
