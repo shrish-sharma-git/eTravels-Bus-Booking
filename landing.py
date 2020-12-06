@@ -1,5 +1,13 @@
+# Tkinter Library
 from tkinter import *
+
+# Custom Font Library
 import pyglet
+
+# SQLite Library
+import sqlite3
+
+# Pillow Library for Images
 from PIL import ImageTk,Image
 
 # Adding Custom Font
@@ -31,7 +39,7 @@ def SearchBus():
 
 # Buttons
 label_add = Label(root, text='(For Operators)', font=('Product Sans Regular', 15), bg="#ffd5bc")
-label_add.place(x=45, y=370)
+label_add.place(x=35, y=370)
 label_search = Label(root, text='(For Customers)', font=('Product Sans Regular', 15), bg="#ffd5bc")
 label_search.place(x=510, y=370)
 add_bus_img = PhotoImage(file = './Assets/add_bus.png')
