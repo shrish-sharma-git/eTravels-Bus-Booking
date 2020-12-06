@@ -18,6 +18,9 @@ root = Tk()
 root.title('Welcome to eTravels - Book Bus Tickets')
 root.geometry("700x500+120+120")
 
+# this removes the maximize button
+root.resizable(0,0)
+
 # image as a bg
 load = Image.open('./Assets/landing.png')
 render = ImageTk.PhotoImage(load)
@@ -145,7 +148,7 @@ def AddBus():
         Dep_Time.delete(0, END)
         Arrival_Time.delete(0, END)
         Fare.delete(0, END)
-        Seats.delete(0, END)        
+        Seats.delete(0, END)
 
 
     # Add Record to Database Button
