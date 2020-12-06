@@ -30,7 +30,7 @@ img.place(x=0, y=0)
 #********************* ADD BUS WINDOW **********************
 # Add Bus Window
 def AddBus():
-    add_bus_app = Tk()
+    add_bus_app = Toplevel()
     add_bus_app.geometry('700x500+120+120')
 
     labelExample = Label(add_bus_app, text = "Welcome Operator!").grid(row=0, column=1, columnspan=10)
@@ -155,18 +155,57 @@ def AddBus():
     add_bus_btn = Button(add_bus_app, text="Add Bus", command=submit)
     add_bus_btn.grid(row=14, column=1, pady=50)
 
-#********************* ADD BUS WINDOW **********************
+#********************* ADD BUS WINDOW ******************************************************
 
 
-#********************* SEARCH BUS WINDOW *******************    
+#********************* SEARCH BUS WINDOW ***************************************************    
 # Search Bus Window
 def SearchBus():
-    search_bus_app = Tk()
+    search_bus_app = Toplevel()
     search_bus_app.geometry('700x500+120+120')
-    labelExample = Label(search_bus_app, text = "Welcome Customer!").pack()
-    home_btn = Button(search_bus_app, text="Home", command=search_bus_app.destroy).pack()
 
-#********************* SEARCH BUS WINDOW *******************    
+    labelExample = Label(search_bus_app, text = "Welcome Customer!").grid(row=0, column=1)
+    home_btn = Button(search_bus_app, text="Home", command=search_bus_app.destroy).grid(row=1, column=1)
+
+    # Header
+    head_label = Label(search_bus_app, text="Search Your Bus!").grid(row=2, column=1)
+
+    # Bus Type DropDown
+    click = StringVar()
+    click.set("Choose Your Bus Type")
+    bus_type_dropd = OptionMenu(search_bus_app, click, "AC", "Non-AC", "AC-Sleeper", "Non-AC-Sleeper", "All Types")
+    bus_type_dropd.grid(row=3, column=1, pady=20)
+
+    # Labels
+    Bus_Type_label = Label(search_bus_app, text="Bus Type")
+    Bus_Type_label.grid(row=4, column=0)
+
+    loc_From_label = Label(search_bus_app, text="From Location")
+    loc_From_label.grid(row=5, column=0)
+
+    loc_To_label = Label(search_bus_app, text="To Loaction")
+    loc_To_label.grid(row=6, column=0)
+
+    # Entries
+    Bus_Type = Entry(search_bus_app, width=60)
+    Bus_Type.grid(row=4, column=1)
+
+    loc_From = Entry(search_bus_app, width=60)
+    loc_From.grid(row=5, column=1)
+
+    loc_To = Entry(search_bus_app, width=60)
+    loc_To.grid(row=6, column=1)
+
+    #Search Function Beta
+    def Search():
+        Label(search_bus_app, text="Working!").grid(row=8, column=1)
+
+    # Search Button
+    search_btn = Button(search_bus_app, text="Search", command=Search)
+    search_btn.grid(row=7, column=1, pady=20)
+
+
+#********************* SEARCH BUS WINDOW ************************************************************    
     
 
 # Buttons
