@@ -58,20 +58,17 @@ def AddBus():
     loc_To = Entry(add_bus_app, width=60)
     loc_To.grid(row=8, column=1)
 
-    Date = Entry(add_bus_app, width=60)
-    Date.grid(row=9, column=1)
-
     Dep_Time = Entry(add_bus_app, width=60)
-    Dep_Time.grid(row=10, column=1)
+    Dep_Time.grid(row=9, column=1)
 
     Arrival_Time = Entry(add_bus_app, width=60)
-    Arrival_Time.grid(row=11, column=1)
+    Arrival_Time.grid(row=10, column=1)
 
     Fare = Entry(add_bus_app, width=60)
-    Fare.grid(row=12, column=1)
+    Fare.grid(row=11, column=1)
 
     Seats = Entry(add_bus_app, width=60)
-    Seats.grid(row=13, column=1)
+    Seats.grid(row=12, column=1)
 
     # Adding Entry Labels
     Agency_name_label = Label(add_bus_app, text="Agency Name")
@@ -95,23 +92,64 @@ def AddBus():
     loc_To_label = Label(add_bus_app, text="To Loaction")
     loc_To_label.grid(row=8, column=0)
 
-    Date_label = Label(add_bus_app, text="Date")
-    Date_label.grid(row=9, column=0)
-
     Dep_Time_label = Label(add_bus_app, text="Departure Time")
-    Dep_Time_label.grid(row=10, column=0)
+    Dep_Time_label.grid(row=9, column=0)
 
     Arrival_Time_label = Label(add_bus_app, text="Arrival TIme")
-    Arrival_Time_label.grid(row=11, column=0)
+    Arrival_Time_label.grid(row=10, column=0)
 
     Fare_label = Label(add_bus_app, text="$ Fare")
-    Fare_label.grid(row=12, column=0)
+    Fare_label.grid(row=11, column=0)
 
     Seats_label = Label(add_bus_app, text="Total Seats")
-    Seats_label.grid(row=13, column=0)
+    Seats_label.grid(row=12, column=0)
+
+    # Submit Function for Database
+    def submit():
+        # Creating Database
+        conn = sqlite3.connect('bus_list.db')
+
+        # Create Cursor
+        c = conn.cursor()
+
+        # Insert DATA into Table
+        c.execute("insert into BusList values(:Agency_name, :Contact_Number, :Address, :Operator_Id, :Bus_Type, :loc_From, :loc_To, :Dep_Time, :Arrival_Time, :Fare, :Seats)",
+                  {
+                      'Agency_name': Agency_name.get(),
+                      'Contact_Number': Contact_Number.get(),
+                      'Address': Address.get(),
+                      'Operator_Id': Operator_Id.get(),
+                      'Bus_Type': Bus_Type.get(),
+                      'loc_From': loc_From.get(),
+                      'loc_To': loc_To.get(),
+                      'Dep_Time': Dep_Time.get(),
+                      'Arrival_Time': Arrival_Time.get(),
+                      'Fare': Fare.get(),
+                      'Seats': Seats.get()
+                      })
+
+        # Commit Changes
+        conn.commit()
+
+        # Closing Connection
+        conn.close()
+
+        # Clear input after Submitting
+        Agency_name.delete(0, END)
+        Contact_Number.delete(0, END)
+        Address.delete(0, END)
+        Operator_Id.delete(0, END)
+        Bus_Type.delete(0, END)
+        loc_From.delete(0, END)
+        loc_To.delete(0, END)
+        Dep_Time.delete(0, END)
+        Arrival_Time.delete(0, END)
+        Fare.delete(0, END)
+        Seats.delete(0, END)        
+
 
     # Add Record to Database Button
-    add_bus_btn = Button(add_bus_app, text="Add Bus")
+    add_bus_btn = Button(add_bus_app, text="Add Bus", command=submit)
     add_bus_btn.grid(row=14, column=1, pady=50)
 
 #********************* ADD BUS WINDOW **********************
