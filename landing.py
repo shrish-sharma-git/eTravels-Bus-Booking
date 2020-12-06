@@ -21,7 +21,7 @@ root.geometry("700x500+120+120")
 # this removes the maximize button
 root.resizable(0,0)
 
-# image as a bg
+# image as a background
 load = Image.open('./Assets/landing.png')
 render = ImageTk.PhotoImage(load)
 img = Label(root, image=render)
@@ -155,7 +155,7 @@ def AddBus():
     add_bus_btn = Button(add_bus_app, text="Add Bus", command=submit)
     add_bus_btn.grid(row=14, column=1, pady=50)
 
-#********************* ADD BUS WINDOW ******************************************************
+#********************* ADD BUS WINDOW ENDS******************************************************
 
 
 #********************* SEARCH BUS WINDOW ***************************************************    
@@ -198,14 +198,30 @@ def SearchBus():
 
     #Search Function Beta
     def Search():
-        Label(search_bus_app, text="Working!").grid(row=8, column=1)
+        # Creating Database
+        conn = sqlite3.connect('bus_list.db')
+
+        # Create Cursor
+        c = conn.cursor()
+
+        # Querying the Database
+        c.execute("Select * from BusList")
+        rec = c.fetchall()
+        print(rec)
+
+        # Commit Changes
+        conn.commit()
+
+        # Closing Connection
+        conn.close()
+        
 
     # Search Button
     search_btn = Button(search_bus_app, text="Search", command=Search)
     search_btn.grid(row=7, column=1, pady=20)
 
 
-#********************* SEARCH BUS WINDOW ************************************************************    
+#********************* SEARCH BUS WINDOW ENDS************************************************************    
     
 
 # Buttons
