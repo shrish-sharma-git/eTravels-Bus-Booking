@@ -177,19 +177,13 @@ def SearchBus():
     bus_type_dropd.grid(row=3, column=1, pady=20)
 
     # Labels
-    Bus_Type_label = Label(search_bus_app, text="Bus Type")
-    Bus_Type_label.grid(row=4, column=0)
-
     loc_From_label = Label(search_bus_app, text="From Location")
-    loc_From_label.grid(row=5, column=0)
+    loc_From_label.grid(row=5, column=0, padx=10)
 
     loc_To_label = Label(search_bus_app, text="To Loaction")
-    loc_To_label.grid(row=6, column=0)
+    loc_To_label.grid(row=6, column=0, padx=10)
 
     # Entries
-    Bus_Type = Entry(search_bus_app, width=60)
-    Bus_Type.grid(row=4, column=1)
-
     loc_From = Entry(search_bus_app, width=60)
     loc_From.grid(row=5, column=1)
 
@@ -198,6 +192,14 @@ def SearchBus():
 
     #Search Function Beta
     def Search():
+        search_app = Toplevel()
+        search_app.geometry('700x500+120+120')
+
+        # Getting Entry Values and keeping them here
+        drop_val = click.get()
+        loc_from_val = loc_From.get()
+        loc_to_val = loc_To.get()
+        
         # Creating Database
         conn = sqlite3.connect('bus_list.db')
 
@@ -207,14 +209,15 @@ def SearchBus():
         # Querying the Database
         c.execute("Select * from BusList")
         rec = c.fetchall()
-        print(rec)
+        for r in rec:
+            Label(search_app, text=str(r)).pack()
 
         # Commit Changes
         conn.commit()
 
         # Closing Connection
         conn.close()
-        
+
 
     # Search Button
     search_btn = Button(search_bus_app, text="Search", command=Search)
