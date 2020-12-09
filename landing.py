@@ -17,7 +17,7 @@ pyglet.font.add_file('./Assets/PSBold.ttf')
 #root layout
 root = Tk()
 root.title('Welcome to eTravels - Book Bus Tickets')
-root.geometry("700x500+120+120")
+root.geometry("800x700+300+50")
 
 # this removes the maximize button
 root.resizable(0,0)
@@ -32,7 +32,7 @@ img.place(x=0, y=0)
 # Add Bus Window
 def AddBus():
     add_bus_app = Toplevel()
-    add_bus_app.geometry('700x500+120+120')
+    add_bus_app.geometry('800x700+300+50')
 
     # image as a background for Add Bus
     load_add_bg = Image.open('./Assets/add_bus_bg.png')
@@ -41,8 +41,9 @@ def AddBus():
     img_add_bus.image = render_add_bus
     img_add_bus.place(x=0, y=0)
 
-    labelExample = Label(add_bus_app, text = "Welcome Operator!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, columnspan=10, pady=10)
+    labelExample = Label(add_bus_app, text = "Welcome Operator!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, columnspan=10, pady=5)
 
+    # Home Button
     home_button = Button(add_bus_app, image=home_btn, command=add_bus_app.destroy, bd=0, bg="#D1456E")
     home_button.place(x=10, y=10)
 
@@ -51,37 +52,37 @@ def AddBus():
 
     #Getting Inputs    
     Agency_name = Entry(add_bus_app, width=60)
-    Agency_name.grid(row=2, column=1, padx=20)
+    Agency_name.grid(row=2, column=1, padx=20, pady=5)
 
     Contact_Number = Entry(add_bus_app, width=60)
-    Contact_Number.grid(row=3, column=1)
+    Contact_Number.grid(row=3, column=1, pady=5)
 
     Address = Entry(add_bus_app, width=60)
-    Address.grid(row=4, column=1)
+    Address.grid(row=4, column=1, pady=5)
 
     Operator_Id = Entry(add_bus_app, width=60)
-    Operator_Id.grid(row=5, column=1)
+    Operator_Id.grid(row=5, column=1, pady=5)
 
     Bus_Type = Entry(add_bus_app, width=60)
-    Bus_Type.grid(row=6, column=1)
+    Bus_Type.grid(row=6, column=1, pady=5)
 
     loc_From = Entry(add_bus_app, width=60)
-    loc_From.grid(row=7, column=1)
+    loc_From.grid(row=7, column=1, pady=5)
 
     loc_To = Entry(add_bus_app, width=60)
-    loc_To.grid(row=8, column=1)
+    loc_To.grid(row=8, column=1, pady=5)
 
     Dep_Time = Entry(add_bus_app, width=60)
-    Dep_Time.grid(row=9, column=1)
+    Dep_Time.grid(row=9, column=1, pady=5)
 
     Arrival_Time = Entry(add_bus_app, width=60)
-    Arrival_Time.grid(row=10, column=1)
+    Arrival_Time.grid(row=10, column=1, pady=5)
 
     Fare = Entry(add_bus_app, width=60)
-    Fare.grid(row=11, column=1)
+    Fare.grid(row=11, column=1, pady=5)
 
     Seats = Entry(add_bus_app, width=60)
-    Seats.grid(row=12, column=1)
+    Seats.grid(row=12, column=1, pady=5)
 
     # Adding Entry Labels
     Agency_name_label = Label(add_bus_app, text="Agency Name", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
@@ -161,11 +162,7 @@ def AddBus():
         Seats.delete(0, END)
 
     # Add Record to Database Button
-    submit_btn = Button(add_bus_app, image=add_btn, bd=0, bg='#D1456E', command=submit).place(x=300, y=350)
-    
-    #add_bus_btn = Button(add_bus_app, text="Add Bus", command=submit)
-    #add_bus_btn.grid(row=14, column=1, pady=50)
-    
+    submit_btn = Button(add_bus_app, image=add_btn, bd=0, bg='#D1456E', command=submit).place(x=300, y=450)
 
 #********************* ADD BUS WINDOW ENDS******************************************************
 
@@ -174,7 +171,7 @@ def AddBus():
 # Search Bus Window
 def SearchBus():
     search_bus_app = Toplevel()
-    search_bus_app.geometry('700x500+120+120')
+    search_bus_app.geometry('800x700+300+50')
 
     # image as a background for Add Bus
     load_src_bg = Image.open('./Assets/search_bus_bg.png')
@@ -184,8 +181,11 @@ def SearchBus():
     img_src_bus.place(x=0, y=0)
 
     labelExample = Label(search_bus_app, text = "Welcome Customer!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, pady=10)
-    #home_btn = Button(search_bus_app, text="Home", command=search_bus_app.destroy).grid(row=1, column=1)
 
+    # Home Button
+    home_button = Button(search_bus_app, image=home_btn, command=search_bus_app.destroy, bd=0, bg="#D1456E")
+    home_button.place(x=10, y=10)
+    
     # Header
     head_label = Label(search_bus_app, text="Search Your Bus!", font=('PSBold', 9), bg='#D1456E', fg='#fff').grid(row=2, column=1)
 
@@ -213,7 +213,7 @@ def SearchBus():
     #Search Function Beta
     def Search():
         search_app = Toplevel()
-        search_app.geometry('700x500+120+120')
+        search_app.geometry('800x700+300+50')
 
         # Getting Entry Values and keeping them here
         drop_val = click.get()
@@ -247,16 +247,16 @@ def SearchBus():
 
 # Buttons
 label_add = Label(root, text='(For Operators)', font=('Product Sans Regular', 15), bg="#ffd5bc")
-label_add.place(x=35, y=370)
+label_add.place(x=35, y=500)
 label_search = Label(root, text='(For Customers)', font=('Product Sans Regular', 15), bg="#ffd5bc")
-label_search.place(x=510, y=370)
+label_search.place(x=610, y=500)
 add_bus_img = PhotoImage(file = './Assets/add_bus.png')
 add_bus = Button(root, image=add_bus_img, bd=0, bg="#ffd5bc", activebackground="#ffd5bc",command=AddBus)
-add_bus.place(x=20, y=400)
+add_bus.place(x=20, y=540)
 
 search_bus_img = PhotoImage(file = './Assets/search_bus.png')
 search_bus = Button(root, image=search_bus_img, bd=0, bg="#ffd5bc", activebackground="#ffd5bc", command=SearchBus)
-search_bus.place(x=470, y=400)
+search_bus.place(x=580, y=540)
 
 # Add Bus App Button Image (Global)
 add_btn = ImageTk.PhotoImage(Image.open("./Assets/add_bus_child.png"))
