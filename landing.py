@@ -53,6 +53,7 @@ img.place(x=0, y=0)
 def AddBus():
     add_bus_app = Toplevel()
     add_bus_app.geometry('800x700+300+50')
+    add_bus_app.resizable(0,0)
     add_bus_app.iconphoto(False, icon_photo)
 
     # image as a background for Add Bus
@@ -94,7 +95,7 @@ def AddBus():
 
     # Entry Inputs
     txtFull_name = Entry(add_bus_app, width=60, textvariable=Full_name)
-    txtFull_name.grid(row=2, column=1, padx=20, pady=5)
+    txtFull_name.grid(row=2, column=1, padx=50, pady=5)
 
     txtContact_Number = Entry(add_bus_app, width=60, textvariable=Contact_no)
     txtContact_Number.grid(row=3, column=1, pady=5)
@@ -124,7 +125,7 @@ def AddBus():
     
         # Entries
         txtAgency_Name = Entry(add_bus_app, width=60, textvariable=Agency_name)
-        txtAgency_Name.grid(row=6, column=1, pady=5)
+        txtAgency_Name.grid(row=6, column=1, pady=5, padx=10)
 
         txtBus_Type = Entry(add_bus_app, width=60, textvariable=Bus_type)
         txtBus_Type.grid(row=7, column=1, pady=5)
@@ -214,6 +215,7 @@ def AddBus():
 def SearchBus():
     search_bus_app = Toplevel()
     search_bus_app.geometry('800x700+300+50')
+    search_bus_app.resizable(0,0)
     search_bus_app.iconphoto(False, icon_photo)
 
     # image as a background for Add Bus
@@ -223,7 +225,7 @@ def SearchBus():
     img_src_bus.image = render_src_bus
     img_src_bus.place(x=0, y=0)
 
-    labelExample = Label(search_bus_app, text = "Welcome Customer!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, pady=10)
+    labelExample = Label(search_bus_app, text = "Welcome Visitor!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, pady=10)
 
     # Home Button
     # Home Button Function
@@ -243,7 +245,7 @@ def SearchBus():
     click = StringVar()
     click.set("Choose Your Bus Type")
     bus_type_dropd = OptionMenu(search_bus_app, click, "AC", "Non-AC", "AC-Sleeper", "Non-AC-Sleeper", "All Types")
-    bus_type_dropd.config(width = 40)
+    bus_type_dropd.config(width = 40, bg='#D1456E', fg="#fff")
     bus_type_dropd.grid(row=3, column=1, pady=30)
 
     # Labels
@@ -270,79 +272,70 @@ def SearchBus():
     txtdate = Entry(search_bus_app, width=60, textvariable = date)
     txtdate.grid(row=7, column=1)
 
-    #Search Function Beta
+    #Search Function
     def Search():
-        search_app = Toplevel()
-        search_app.geometry('800x700+300+50')
-        # image as a background for Add Bus
-        load_src_bg = Image.open('./Assets/results_bg.png')
-        render_src_bus = ImageTk.PhotoImage(load_src_bg)
-        img_src_bus = Label(search_app, image=render_src_bus)
-        img_src_bus.image = render_src_bus
-        img_src_bus.place(x=0, y=0)
+        if(str(loc_From.get()) != 0 and str(loc_From.get()) != str(loc_To.get())):
+            search_app = Toplevel()
+            search_app.geometry('800x700+300+50')
+            # image as a background for Add Bus
+            load_src_bg = Image.open('./Assets/results_bg.png')
+            render_src_bus = ImageTk.PhotoImage(load_src_bg)
+            img_src_bus = Label(search_app, image=render_src_bus)
+            img_src_bus.image = render_src_bus
+            img_src_bus.place(x=0, y=0)
 
-        if(len(loc_From.get())!=0 and loc_From.get() != loc_To.get()):
-            #Printing the results on Search Screen
-
-            # Data Headers
-            Agency_name_label = Label(search_app, text="Name", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Agency_name_label.grid(row=0, column=0, pady=15, padx=5)
-
-            Bus_Type_label = Label(search_app, text="Type", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Bus_Type_label.grid(row=0, column=1, pady=15, padx=5)
-
-            loc_From_label = Label(search_app, text="From", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            loc_From_label.grid(row=0, column=2, pady=15, padx=5)
-
-            loc_To_label = Label(search_app, text="To", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            loc_To_label.grid(row=0, column=3, pady=15, padx=5)
-
-            date_label = Label(search_app, text="Date", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            date_label.grid(row=0, column=4, pady=15, padx=5)
+            # Fetching And Showing Details.
+            conn = sqlite3.Connection('bus_list.db')
+            c = conn.cursor()
+            Agency_name_label=Label(search_app,text="Name",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=0)
+            Bus_Type_label=Label(search_app,text="Type",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=1)
+            loc_From_label=Label(search_app,text="From",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=2)
+            loc_To_label=Label(search_app,text="To",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=3)
+            date_label=Label(search_app,text="Date",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=4)
+            Dep_Time_label=Label(search_app,text="Departure On",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=5)
+            Arrival_Time_label=Label(search_app,text="Arrival On",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=6)
+            Fare_label=Label(search_app,text="Fare",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=7)
+            Seats_label=Label(search_app,text="Seat(s)",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=8)
+            Select_label=Label(search_app,text="Book",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=9)
             
-            Dep_Time_label = Label(search_app, text="Departure On", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Dep_Time_label.grid(row=0, column=5, pady=15, padx=5)
-
-            Arrival_Time_label = Label(search_app, text="Arrival On", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Arrival_Time_label.grid(row=0, column=6, pady=15, padx=5)
-
-            Fare_label = Label(search_app, text="Fare", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Fare_label.grid(row=0, column=7, pady=15, padx=5)
-
-            Seats_label = Label(search_app, text="Seat(s)", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Seats_label.grid(row=0, column=8, pady=15, padx=5)
-
-            Select_label = Label(search_app, text="Book", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
-            Select_label.grid(row=0, column=9, pady=15, padx=5)
             
-            #for row in Search_Bus(loc_From.get(), loc_To.get(), date.get()): 
-                #print(row)
-                #Label(search_app, t, fg='#fff', bg='#D1456E').grid(row=1, column=1)
-
-            number = 3    
-            for row in Search_Bus(loc_From.get(), loc_To.get(), date.get()):
-                print(row)
-                n = 1
-                v = IntVar()
-                name = Label(search_app, text=row[0], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=0)
-                b_type = Label(search_app, text=row[1], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=1)
-                l_frm = Label(search_app, text=row[2], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=2)
-                l_to = Label(search_app, text=row[3], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=3)
-                l_date = Label(search_app, text=row[4], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=4)
-                dep_t = Label(search_app, text=row[5], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=5)
-                arr_t = Label(search_app, text=row[6], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=6)
-                l_fare = Label(search_app, text=row[7], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=7)
-                l_seat = Label(search_app, text=row[8], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=8)
-                radio_btn = Radiobutton(search_app, variable = v, value=n, fg='#fff', bg='#D1456E').grid(row=number, column=9)
-
-                # Incrementing the Column & Radio Value
-                number = number + 1
-                n + 1    
+            l_from = loc_From.get()
+            l_to = loc_To.get()
+            d_date = date.get()
+            c.execute("SELECT * FROM Bus_Details WHERE loc_From=(?) and loc_To=(?) and Date=(?)",(l_from,l_to,d_date,))
+            res_data = c.fetchall()
+            conn.close()
+            print(res_data)
+            num=3
+            n=1
+            for i in res_data:
+                print(i)
+                v=IntVar()
+                name=Label(search_app,text=i[0], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num)
+                b_type=Label(search_app,text=i[1], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=1)
+                l_frm=Label(search_app,text=i[2], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=2)
+                l_to=Label(search_app,text=i[3], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=3)
+                l_date=Label(search_app,text=i[4], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=4)
+                dep_t=Label(search_app,text=i[5], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=5)
+                arr_t=Label(search_app,text=i[6], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=6)
+                l_fare=Label(search_app,text=i[7], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=7)
+                l_seat=Label(search_app,text=i[8], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=8)
+                radio_btn=Radiobutton(search_app,variable=v,value=n)
+                radio_btn.grid(row=num,column=9) 
+                n+1
+                num=num+1
+            def book():
+                print(v.get())
+                messagebox.showinfo("Success!!", "Your Seats Have Been Booked!")
+                
+                
+            Book_btn = Button(search_app, text="Book Seats", command=book).grid(column=9, sticky='nw')
         else:
             messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields Correctly!")
-            
+    
+                
     # Search Button
-    search_btn = Button(search_bus_app, image=src_btn, bd=0, bg='#D1456E', command=Search).place(x=270, y=240)    
+    search_btn = Button(search_bus_app, image=src_btn, bd=0, bg='#D1456E', command=Search).place(x=270, y=240)
 
 #********************* SEARCH BUS WINDOW ENDS************************************************************    
     
@@ -383,6 +376,7 @@ c.execute('''create table if not exists Bus_Details (Agency_name varchar(50) not
 conn.commit()
 conn.close()
 
+# Adding Bus Details
 def Add_Bus_Record(Agency_name, Bus_type, loc_From, loc_To, Date, Dep_Time, Arrival_Time, fare, seats):
     conn = sqlite3.connect('bus_list.db')
     c = conn.cursor()
@@ -390,20 +384,12 @@ def Add_Bus_Record(Agency_name, Bus_type, loc_From, loc_To, Date, Dep_Time, Arri
     conn.commit()
     conn.close()
 
+# Adding Operator Details
 def Add_Operator_Record(Full_name, Contact_no, Address):
     conn = sqlite3.connect('bus_list.db')
     c = conn.cursor()
     c.execute("INSERT INTO Operator_Details VALUES (?,?,?)", (Full_name, Contact_no, Address))
     conn.commit()
     conn.close()
-
-def Search_Bus(loc_From, loc_To, date):
-    conn = sqlite3.connect('bus_list.db')
-    c = conn.cursor()
-    c.execute("select * from Bus_Details where loc_From=(?) and loc_To=(?) and date=(?)", (loc_From, loc_To, date,))
-    rows = c.fetchall()
-    conn.commit()
-    conn.close()
-    return rows
 #********************************************** DATABASE END*************************************************#
 root.mainloop()
