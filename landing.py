@@ -256,6 +256,12 @@ def SearchBus():
     def Search():
         search_app = Toplevel()
         search_app.geometry('800x700+300+50')
+        # image as a background for Add Bus
+        load_src_bg = Image.open('./Assets/results_bg.png')
+        render_src_bus = ImageTk.PhotoImage(load_src_bg)
+        img_src_bus = Label(search_app, image=render_src_bus)
+        img_src_bus.image = render_src_bus
+        img_src_bus.place(x=0, y=0)
 
         if(len(loc_From.get())!=0):
             #Printing the results on Search Screen
@@ -298,9 +304,8 @@ home_btn = ImageTk.PhotoImage(Image.open("./Assets/home.png"))
 # Add Details Button (Global)
 add_det_btn = ImageTk.PhotoImage(Image.open("./Assets/add_details_btn.png"))
 
-# Icon Photo Global
+# Icon Photo (Global)
 icon_photo = PhotoImage(file = "./Assets/root_icon.png")
-
 
 #********************************************** DATABASE *************************************************#
 conn = sqlite3.connect('bus_list.db')
