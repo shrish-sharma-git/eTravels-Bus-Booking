@@ -50,7 +50,7 @@ def AddBus():
     # Home Button Function
     def home_fun():
         response = messagebox.askyesno("Go to Homepage?", "Are You Sure?", parent=add_bus_app)
-        if response == 'yes':
+        if response == True:
             add_bus_app.destroy()
             
     home_button = Button(add_bus_app, image=home_btn, command=home_fun, bd=0, bg="#D1456E")
@@ -211,8 +211,8 @@ def SearchBus():
     # Home Button Function
     def home_fun():
         response = messagebox.askyesno("Go to Homepage?", "Are You Sure?", parent=search_bus_app)
-        if response == 'yes':
-            search_bus_app.destroy
+        if response == True:
+            search_bus_app.destroy()
             
     
     home_button = Button(search_bus_app, image=home_btn, command=home_fun, bd=0, bg="#D1456E")
