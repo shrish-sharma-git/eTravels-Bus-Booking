@@ -15,7 +15,7 @@ from PIL import ImageTk,Image
 pyglet.font.add_file('./Assets/Product Sans Regular.ttf')
 pyglet.font.add_file('./Assets/PSBold.ttf')
 
-#************** SPLASH SCREEN**************#
+'''#************** SPLASH SCREEN**************#
 # Splash Screen
 s_root = Tk()
 s_root.geometry('800x700+300+50')
@@ -31,7 +31,7 @@ img_splash.place(x=0, y=0)
 s_root.after(5000, s_root.destroy)
 s_root.mainloop()
 
-#************** SPLASH SCREEN**************#
+#************** SPLASH SCREEN**************#'''
 
 #root layout
 root = Tk()
@@ -281,15 +281,65 @@ def SearchBus():
         img_src_bus.image = render_src_bus
         img_src_bus.place(x=0, y=0)
 
-        if(len(loc_From.get())!=0):
+        if(len(loc_From.get())!=0 and loc_From.get() != loc_To.get()):
             #Printing the results on Search Screen
-            #header
-            #search_head = Label(search_app, text="Available Buses", font=("PSBold", 18)).pack()
-            for row in Search_Bus(loc_From.get(), loc_To.get(), date.get()): 
+
+            # Data Headers
+            Agency_name_label = Label(search_app, text="Name", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Agency_name_label.grid(row=0, column=0, pady=15, padx=5)
+
+            Bus_Type_label = Label(search_app, text="Type", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Bus_Type_label.grid(row=0, column=1, pady=15, padx=5)
+
+            loc_From_label = Label(search_app, text="From", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            loc_From_label.grid(row=0, column=2, pady=15, padx=5)
+
+            loc_To_label = Label(search_app, text="To", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            loc_To_label.grid(row=0, column=3, pady=15, padx=5)
+
+            date_label = Label(search_app, text="Date", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            date_label.grid(row=0, column=4, pady=15, padx=5)
+            
+            Dep_Time_label = Label(search_app, text="Departure On", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Dep_Time_label.grid(row=0, column=5, pady=15, padx=5)
+
+            Arrival_Time_label = Label(search_app, text="Arrival On", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Arrival_Time_label.grid(row=0, column=6, pady=15, padx=5)
+
+            Fare_label = Label(search_app, text="Fare", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Fare_label.grid(row=0, column=7, pady=15, padx=5)
+
+            Seats_label = Label(search_app, text="Seat(s)", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Seats_label.grid(row=0, column=8, pady=15, padx=5)
+
+            Select_label = Label(search_app, text="Book", font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E')
+            Select_label.grid(row=0, column=9, pady=15, padx=5)
+            
+            #for row in Search_Bus(loc_From.get(), loc_To.get(), date.get()): 
+                #print(row)
+                #Label(search_app, t, fg='#fff', bg='#D1456E').grid(row=1, column=1)
+
+            number = 3    
+            for row in Search_Bus(loc_From.get(), loc_To.get(), date.get()):
                 print(row)
-                Label(search_app, text=str(row) + "\n").pack()
+                n = 1
+                v = IntVar()
+                name = Label(search_app, text=row[0], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=0)
+                b_type = Label(search_app, text=row[1], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=1)
+                l_frm = Label(search_app, text=row[2], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=2)
+                l_to = Label(search_app, text=row[3], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=3)
+                l_date = Label(search_app, text=row[4], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=4)
+                dep_t = Label(search_app, text=row[5], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=5)
+                arr_t = Label(search_app, text=row[6], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=6)
+                l_fare = Label(search_app, text=row[7], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=7)
+                l_seat = Label(search_app, text=row[8], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=number, column=8)
+                radio_btn = Radiobutton(search_app, variable = v, value=n, fg='#fff', bg='#D1456E').grid(row=number, column=9)
+
+                # Incrementing the Column & Radio Value
+                number = number + 1
+                n + 1    
         else:
-            messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields!")
+            messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields Correctly!")
             
     # Search Button
     search_btn = Button(search_bus_app, image=src_btn, bd=0, bg='#D1456E', command=Search).place(x=270, y=240)    
