@@ -15,6 +15,21 @@ from PIL import ImageTk,Image
 pyglet.font.add_file('./Assets/Product Sans Regular.ttf')
 pyglet.font.add_file('./Assets/PSBold.ttf')
 
+# Splash Screen
+s_root = Tk()
+s_root.geometry('800x700+300+50')
+s_root.overrideredirect(True)
+
+# Setting Splash Screen
+load_splash_bg = Image.open('./Assets/splash_screen.png')
+render_splash = ImageTk.PhotoImage(load_splash_bg)
+img_splash = Label(s_root, image=render_splash)
+img_splash.image = render_splash
+img_splash.place(x=0, y=0)
+
+s_root.after(5000, s_root.destroy)
+s_root.mainloop()
+
 #root layout
 root = Tk()
 root.title('Welcome to eTravels - Book Bus Tickets')
@@ -337,5 +352,5 @@ def Search_Bus(loc_From, loc_To, date):
     conn.commit()
     conn.close()
     return rows
-#********************************************** DATABASE *************************************************#
+#********************************************** DATABASE END*************************************************#
 root.mainloop()
