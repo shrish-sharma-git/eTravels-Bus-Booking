@@ -232,23 +232,38 @@ def SearchBus():
     loc_To_label = Label(search_bus_app, text="To Loaction", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
     loc_To_label.grid(row=6, column=0, padx=10)
 
-    # Entries
-    loc_From = Entry(search_bus_app, width=60)
-    loc_From.grid(row=5, column=1)
+    date_label = Label(search_bus_app, text="Date", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    date_label.grid(row=7, column=0, padx=10)    
 
-    loc_To = Entry(search_bus_app, width=60)
-    loc_To.grid(row=6, column=1)
+    # Entries
+    # String Vars
+    loc_From = StringVar()
+    loc_To = StringVar()
+    date = StringVar()
+    txtloc_From = Entry(search_bus_app, width=60, textvariable = loc_From)
+    txtloc_From.grid(row=5, column=1)
+
+    txtloc_To = Entry(search_bus_app, width=60, textvariable = loc_To)
+    txtloc_To.grid(row=6, column=1)
+
+    txtdate = Entry(search_bus_app, width=60, textvariable = date)
+    txtdate.grid(row=7, column=1)
 
     #Search Function Beta
     def Search():
         search_app = Toplevel()
         search_app.geometry('800x700+300+50')
 
-        # Getting Entry Values and keeping them here
-        drop_val = click.get()
-        loc_from_val = loc_From.get()
-        loc_to_val = loc_To.get()
-
+        if(len(loc_From.get())!=0):
+            #Printing the results on Search Screen
+            #header
+            #search_head = Label(search_app, text="Available Buses", font=("PSBold", 18)).pack()
+            for row in Search_Bus(loc_From.get(), loc_To.get(), date.get()): 
+                print(row)
+                Label(search_app, text=str(row) + "\n").pack()
+        else:
+            messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields!")
+            
     # Search Button
     search_btn = Button(search_bus_app, image=src_btn, bd=0, bg='#D1456E', command=Search).place(x=270, y=240)    
 
@@ -300,6 +315,15 @@ def Add_Operator_Record(Full_name, Contact_no, Address):
     c = conn.cursor()
     c.execute("INSERT INTO Operator_Details VALUES (?,?,?)", (Full_name, Contact_no, Address))
     conn.commit()
-    conn.close()    
+    conn.close()
+
+def Search_Bus(loc_From, loc_To, date):
+    conn = sqlite3.connect('bus_list.db')
+    c = conn.cursor()
+    c.execute("select * from Bus_Details where loc_From=(?) and loc_To=(?) and date=(?)", (loc_From, loc_To, date,))
+    rows = c.fetchall()
+    conn.commit()
+    conn.close()
+    return rows
 #********************************************** DATABASE *************************************************#
 root.mainloop()
