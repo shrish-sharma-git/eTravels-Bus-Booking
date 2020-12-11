@@ -1,5 +1,6 @@
 # Tkinter Library
 from tkinter import *
+from tkinter import messagebox
 
 # Custom Font Library
 import pyglet
@@ -44,49 +45,47 @@ def AddBus():
     labelExample = Label(add_bus_app, text = "Welcome Operator!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, columnspan=10, pady=5)
 
     # Home Button
-    home_button = Button(add_bus_app, image=home_btn, command=add_bus_app.destroy, bd=0, bg="#D1456E")
+    # Home Button Function
+    def home_fun():
+        response = messagebox.askyesno("Go to Homepage?", "Are You Sure?", parent=add_bus_app)
+        if response == 'yes':
+            add_bus_app.destroy()
+            
+    home_button = Button(add_bus_app, image=home_btn, command=home_fun, bd=0, bg="#D1456E")
     home_button.place(x=10, y=10)
 
     # Header
     head_label = Label(add_bus_app, text="Add Details of Buses", font=('PSBold', 9), bg='#D1456E', fg='#fff').grid(row=1, column=1, pady=10, columnspan=10)
 
-    #Getting Inputs    
-    Agency_name = Entry(add_bus_app, width=60)
-    Agency_name.grid(row=2, column=1, padx=20, pady=5)
+    #Getting Inputs
+    #Defining String Variables for each entry
+    Full_name = StringVar()
+    Contact_no = StringVar()
+    Address = StringVar()
+    Agency_name = StringVar()
+    Bus_type = StringVar()
+    loc_From = StringVar()
+    loc_To = StringVar()
+    Date = StringVar()
+    Dep_Time = StringVar()
+    Arrival_Time = StringVar()
+    fare = StringVar()
+    seats = StringVar()
 
-    Contact_Number = Entry(add_bus_app, width=60)
-    Contact_Number.grid(row=3, column=1, pady=5)
+    # Entry Inputs
+    txtFull_name = Entry(add_bus_app, width=60, textvariable=Full_name)
+    txtFull_name.grid(row=2, column=1, padx=20, pady=5)
 
-    Address = Entry(add_bus_app, width=60)
-    Address.grid(row=4, column=1, pady=5)
+    txtContact_Number = Entry(add_bus_app, width=60, textvariable=Contact_no)
+    txtContact_Number.grid(row=3, column=1, pady=5)
 
-    Operator_Id = Entry(add_bus_app, width=60)
-    Operator_Id.grid(row=5, column=1, pady=5)
+    txtAddress = Entry(add_bus_app, width=60, textvariable=Address)
+    txtAddress.grid(row=4, column=1, pady=5)
 
-    Bus_Type = Entry(add_bus_app, width=60)
-    Bus_Type.grid(row=6, column=1, pady=5)
-
-    loc_From = Entry(add_bus_app, width=60)
-    loc_From.grid(row=7, column=1, pady=5)
-
-    loc_To = Entry(add_bus_app, width=60)
-    loc_To.grid(row=8, column=1, pady=5)
-
-    Dep_Time = Entry(add_bus_app, width=60)
-    Dep_Time.grid(row=9, column=1, pady=5)
-
-    Arrival_Time = Entry(add_bus_app, width=60)
-    Arrival_Time.grid(row=10, column=1, pady=5)
-
-    Fare = Entry(add_bus_app, width=60)
-    Fare.grid(row=11, column=1, pady=5)
-
-    Seats = Entry(add_bus_app, width=60)
-    Seats.grid(row=12, column=1, pady=5)
-
+    
     # Adding Entry Labels
-    Agency_name_label = Label(add_bus_app, text="Agency Name", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Agency_name_label.grid(row=2, column=0, padx=50)
+    Full_name_label = Label(add_bus_app, text="Full Name", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    Full_name_label.grid(row=2, column=0, padx=50)
 
     Contact_Number_label = Label(add_bus_app, text="Contact Number", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
     Contact_Number_label.grid(row=3, column=0)
@@ -94,76 +93,99 @@ def AddBus():
     Address_label = Label(add_bus_app, text="Address", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
     Address_label.grid(row=4, column=0)
 
-    Operator_Id_label = Label(add_bus_app, text="Operator Id", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Operator_Id_label.grid(row=5, column=0)
-
-    Bus_Type_label = Label(add_bus_app, text="Bus Type", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Bus_Type_label.grid(row=6, column=0)
-
-    loc_From_label = Label(add_bus_app, text="From Location", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    loc_From_label.grid(row=7, column=0)
-
-    loc_To_label = Label(add_bus_app, text="To Loaction", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    loc_To_label.grid(row=8, column=0)
-
-    Dep_Time_label = Label(add_bus_app, text="Departure Time", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Dep_Time_label.grid(row=9, column=0)
-
-    Arrival_Time_label = Label(add_bus_app, text="Arrival TIme", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Arrival_Time_label.grid(row=10, column=0)
-
-    Fare_label = Label(add_bus_app, text="$ Fare", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Fare_label.grid(row=11, column=0)
-
-    Seats_label = Label(add_bus_app, text="Total Seats", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
-    Seats_label.grid(row=12, column=0)
 
     # Submit Function for Database
-    def submit():
-        # Creating Database
-        conn = sqlite3.connect('bus_list.db')
+    def Main_Details():
+        # calling fun to add data in operator
+        if(len(Full_name.get())!=0):
+            Add_Operator_Record(Full_name.get(), Contact_no.get(), Address.get())
+        else:
+            messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields!")
+    
+        # Entries
+        txtAgency_Name = Entry(add_bus_app, width=60, textvariable=Agency_name)
+        txtAgency_Name.grid(row=6, column=1, pady=5)
 
-        # Create Cursor
-        c = conn.cursor()
+        txtBus_Type = Entry(add_bus_app, width=60, textvariable=Bus_type)
+        txtBus_Type.grid(row=7, column=1, pady=5)
 
-        # Insert DATA into Table
-        c.execute("insert into BusList values(:Agency_name, :Contact_Number, :Address, :Operator_Id, :Bus_Type, :loc_From, :loc_To, :Dep_Time, :Arrival_Time, :Fare, :Seats)",
-                  {
-                      'Agency_name': Agency_name.get(),
-                      'Contact_Number': Contact_Number.get(),
-                      'Address': Address.get(),
-                      'Operator_Id': Operator_Id.get(),
-                      'Bus_Type': Bus_Type.get(),
-                      'loc_From': loc_From.get(),
-                      'loc_To': loc_To.get(),
-                      'Dep_Time': Dep_Time.get(),
-                      'Arrival_Time': Arrival_Time.get(),
-                      'Fare': Fare.get(),
-                      'Seats': Seats.get()
-                      })
+        txtloc_From = Entry(add_bus_app, width=60, textvariable=loc_From)
+        txtloc_From.grid(row=8, column=1, pady=5)
 
-        # Commit Changes
-        conn.commit()
+        txtloc_To = Entry(add_bus_app, width=60, textvariable=loc_To)
+        txtloc_To.grid(row=9, column=1, pady=5)
 
-        # Closing Connection
-        conn.close()
+        txtdate = Entry(add_bus_app, width=60, textvariable=Date)
+        txtdate.grid(row=10, column=1, pady=5)
+        
+        txtDep_Time = Entry(add_bus_app, width=60, textvariable=Dep_Time)
+        txtDep_Time.grid(row=11, column=1, pady=5)
 
-        # Clear input after Submitting
-        Agency_name.delete(0, END)
-        Contact_Number.delete(0, END)
-        Address.delete(0, END)
-        Operator_Id.delete(0, END)
-        Bus_Type.delete(0, END)
-        loc_From.delete(0, END)
-        loc_To.delete(0, END)
-        Dep_Time.delete(0, END)
-        Arrival_Time.delete(0, END)
-        Fare.delete(0, END)
-        Seats.delete(0, END)
+        txtArrival_Time = Entry(add_bus_app, width=60, textvariable=Arrival_Time)
+        txtArrival_Time.grid(row=12, column=1, pady=5)
 
-    # Add Record to Database Button
-    submit_btn = Button(add_bus_app, image=add_btn, bd=0, bg='#D1456E', command=submit).place(x=300, y=450)
+        txtFare = Entry(add_bus_app, width=60, textvariable=fare)
+        txtFare.grid(row=13, column=1, pady=5)
 
+        txtSeats = Entry(add_bus_app, width=60, textvariable=seats)
+        txtSeats.grid(row=14, column=1, pady=5)
+
+        # Labels
+        Agency_name_label = Label(add_bus_app, text="Agency Name", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Agency_name_label.grid(row=6, column=0)
+
+        Bus_Type_label = Label(add_bus_app, text="Bus Type", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Bus_Type_label.grid(row=7, column=0)
+
+        loc_From_label = Label(add_bus_app, text="From Location", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        loc_From_label.grid(row=8, column=0)
+
+        loc_To_label = Label(add_bus_app, text="To Loaction", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        loc_To_label.grid(row=9, column=0)
+
+        date_label = Label(add_bus_app, text="Date", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        date_label.grid(row=10, column=0)
+        
+        Dep_Time_label = Label(add_bus_app, text="Departure Time", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Dep_Time_label.grid(row=11, column=0)
+
+        Arrival_Time_label = Label(add_bus_app, text="Arrival TIme", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Arrival_Time_label.grid(row=12, column=0)
+
+        Fare_label = Label(add_bus_app, text="$ Fare", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Fare_label.grid(row=13, column=0)
+
+        Seats_label = Label(add_bus_app, text="Total Seats", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Seats_label.grid(row=14, column=0)
+
+        # The Add Bus Button (2nd on Add Bus Page)
+        submit_btn = Button(add_bus_app, image=add_btn, bd=0, bg='#D1456E', command=Add_Record).grid(row=15, column=1)
+
+    def Add_Record():
+        if(len(Agency_name.get()) != 0):
+            Add_Bus_Record(Agency_name.get(), Bus_type.get(), loc_From.get(), loc_To.get(), Date.get(), Dep_Time.get(), Arrival_Time.get(), fare.get(), seats.get())
+            # Clear input after Submitting
+            # Clear input after Submitting
+            Full_name.set('')
+            Contact_no.set('')
+            Address.set('')
+            
+            Agency_name.set('')
+            Bus_type.set('')
+            loc_From.set('')
+            loc_To.set('')
+            Date.set('')
+            Dep_Time.set('')
+            Arrival_Time.set('')
+            fare.set('')
+            seats.set('')
+            messagebox.showinfo("Success!", "Your Bus has been added and now is available for live bookings!")
+        else:
+            messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields!")
+          
+    # The Add Details Button (1st on Add Bus Page)
+    submit_btn = Button(add_bus_app, image=add_det_btn, bd=0, bg='#D1456E', command=Main_Details).grid(row=5, column=1)
+    
 #********************* ADD BUS WINDOW ENDS******************************************************
 
 
@@ -183,7 +205,14 @@ def SearchBus():
     labelExample = Label(search_bus_app, text = "Welcome Customer!", font=('PSBold', 18), bg='#D1456E', fg='#fff').grid(row=0, column=1, pady=10)
 
     # Home Button
-    home_button = Button(search_bus_app, image=home_btn, command=search_bus_app.destroy, bd=0, bg="#D1456E")
+    # Home Button Function
+    def home_fun():
+        response = messagebox.askyesno("Go to Homepage?", "Are You Sure?", parent=search_bus_app)
+        if response == 'yes':
+            search_bus_app.destroy
+            
+    
+    home_button = Button(search_bus_app, image=home_btn, command=home_fun, bd=0, bg="#D1456E")
     home_button.place(x=10, y=10)
     
     # Header
@@ -219,25 +248,6 @@ def SearchBus():
         drop_val = click.get()
         loc_from_val = loc_From.get()
         loc_to_val = loc_To.get()
-        
-        # Creating Database
-        conn = sqlite3.connect('bus_list.db')
-
-        # Create Cursor
-        c = conn.cursor()
-
-        # Querying the Database
-        c.execute("Select * from BusList")
-        rec = c.fetchall()
-        for r in rec:
-            Label(search_app, text=str(r)).pack()
-
-        # Commit Changes
-        conn.commit()
-
-        # Closing Connection
-        conn.close()
-
 
     # Search Button
     search_btn = Button(search_bus_app, image=src_btn, bd=0, bg='#D1456E', command=Search).place(x=270, y=240)    
@@ -264,10 +274,32 @@ add_btn = ImageTk.PhotoImage(Image.open("./Assets/add_bus_child.png"))
 # Search Bus App Button Image (Global)
 src_btn = ImageTk.PhotoImage(Image.open("./Assets/search_bus_child.png"))
 
-# Hime Button (Global)
+# Home Button (Global)
 home_btn = ImageTk.PhotoImage(Image.open("./Assets/home.png"))
 
-#********************************************** DATABASE *************************************************#
+# Add Details Button (Global)
+add_det_btn = ImageTk.PhotoImage(Image.open("./Assets/add_details_btn.png"))
 
+#********************************************** DATABASE *************************************************#
+conn = sqlite3.connect('bus_list.db')
+c = conn.cursor()
+c.execute('''create table if not exists Operator_Details (Full_name vauchar(50) not null, Contact_no int(10) not null, Address varchar(50) not null)''')
+c.execute('''create table if not exists Bus_Details (Agency_name varchar(50) not null, Bus_type varchar(30) not null, loc_From varchar(30) not null, loc_To varchar(30) not null, Date date, Dep_Time time, Arrival_Time time, fare int(10), seats int(10))''')
+conn.commit()
+conn.close()
+
+def Add_Bus_Record(Agency_name, Bus_type, loc_From, loc_To, Date, Dep_Time, Arrival_Time, fare, seats):
+    conn = sqlite3.connect('bus_list.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Bus_Details VALUES (?,?,?,?,?,?,?,?,?)", (Agency_name, Bus_type, loc_From, loc_To, Date, Dep_Time, Arrival_Time, fare, seats))
+    conn.commit()
+    conn.close()
+
+def Add_Operator_Record(Full_name, Contact_no, Address):
+    conn = sqlite3.connect('bus_list.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO Operator_Details VALUES (?,?,?)", (Full_name, Contact_no, Address))
+    conn.commit()
+    conn.close()    
 #********************************************** DATABASE *************************************************#
 root.mainloop()
