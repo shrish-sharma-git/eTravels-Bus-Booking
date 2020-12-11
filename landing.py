@@ -15,7 +15,7 @@ from PIL import ImageTk,Image
 pyglet.font.add_file('./Assets/Product Sans Regular.ttf')
 pyglet.font.add_file('./Assets/PSBold.ttf')
 
-'''#************** SPLASH SCREEN**************#
+#************** SPLASH SCREEN**************#
 # Splash Screen
 s_root = Tk()
 s_root.geometry('800x700+300+50')
@@ -31,7 +31,7 @@ img_splash.place(x=0, y=0)
 s_root.after(5000, s_root.destroy)
 s_root.mainloop()
 
-#************** SPLASH SCREEN**************#'''
+#************** SPLASH SCREEN**************#
 
 #root layout
 root = Tk()
@@ -277,6 +277,7 @@ def SearchBus():
         if(str(loc_From.get()) != 0 and str(loc_From.get()) != str(loc_To.get())):
             search_app = Toplevel()
             search_app.geometry('800x700+300+50')
+            search_app.resizable(0,0)
             # image as a background for Add Bus
             load_src_bg = Image.open('./Assets/results_bg.png')
             render_src_bus = ImageTk.PhotoImage(load_src_bg)
@@ -324,12 +325,16 @@ def SearchBus():
                 radio_btn.grid(row=num,column=9) 
                 n+1
                 num=num+1
-            def book():
-                print(v.get())
-                messagebox.showinfo("Success!!", "Your Seats Have Been Booked!")
+            def book_tickets():
+                res = v.get()
+                print(res)
+                if res == 1:
+                    messagebox.showinfo("Success!!", "Your Seats Has Been Booked!")
+                else:
+                    messagebox.showerror("Sorry!", "You have to select your ride first!", parent=search_app)
                 
                 
-            Book_btn = Button(search_app, text="Book Seats", command=book).grid(column=9, sticky='nw')
+            Book_btn = Button(search_app, text="Book Seats", command=book_tickets, bd=5, bg="#871e3d", fg="#fff").grid(column=9, sticky='nw', ipadx=10, ipady=5, pady=10)
         else:
             messagebox.showerror("Error!", "Please Make Sure to Fill all the Input Fields Correctly!")
     
