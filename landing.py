@@ -15,6 +15,7 @@ from PIL import ImageTk,Image
 pyglet.font.add_file('./Assets/Product Sans Regular.ttf')
 pyglet.font.add_file('./Assets/PSBold.ttf')
 
+#************** SPLASH SCREEN**************#
 # Splash Screen
 s_root = Tk()
 s_root.geometry('800x700+300+50')
@@ -29,6 +30,8 @@ img_splash.place(x=0, y=0)
 
 s_root.after(5000, s_root.destroy)
 s_root.mainloop()
+
+#************** SPLASH SCREEN**************#
 
 #root layout
 root = Tk()
