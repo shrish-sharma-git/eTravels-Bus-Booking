@@ -19,6 +19,7 @@ pyglet.font.add_file('./Assets/PSBold.ttf')
 root = Tk()
 root.title('Welcome to eTravels - Book Bus Tickets')
 root.geometry("800x700+300+50")
+root.iconbitmap('./Assets/root_icon.ico')
 
 # this removes the maximize button
 root.resizable(0,0)
@@ -34,6 +35,7 @@ img.place(x=0, y=0)
 def AddBus():
     add_bus_app = Toplevel()
     add_bus_app.geometry('800x700+300+50')
+    add_bus_app.iconphoto(False, icon_photo)
 
     # image as a background for Add Bus
     load_add_bg = Image.open('./Assets/add_bus_bg.png')
@@ -194,6 +196,7 @@ def AddBus():
 def SearchBus():
     search_bus_app = Toplevel()
     search_bus_app.geometry('800x700+300+50')
+    search_bus_app.iconphoto(False, icon_photo)
 
     # image as a background for Add Bus
     load_src_bg = Image.open('./Assets/search_bus_bg.png')
@@ -294,6 +297,10 @@ home_btn = ImageTk.PhotoImage(Image.open("./Assets/home.png"))
 
 # Add Details Button (Global)
 add_det_btn = ImageTk.PhotoImage(Image.open("./Assets/add_details_btn.png"))
+
+# Icon Photo Global
+icon_photo = PhotoImage(file = "./Assets/root_icon.png")
+
 
 #********************************************** DATABASE *************************************************#
 conn = sqlite3.connect('bus_list.db')
