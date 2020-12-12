@@ -157,25 +157,25 @@ def AddBus():
         Bus_Type_label = Label(add_bus_app, text="Bus Type", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Bus_Type_label.grid(row=7, column=0)
 
-        loc_From_label = Label(add_bus_app, text="From Location", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        loc_From_label = Label(add_bus_app, text="From Location", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         loc_From_label.grid(row=8, column=0)
 
-        loc_To_label = Label(add_bus_app, text="To Loaction", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        loc_To_label = Label(add_bus_app, text="To Loaction", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         loc_To_label.grid(row=9, column=0)
 
-        date_label = Label(add_bus_app, text="Date", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        date_label = Label(add_bus_app, text="Date", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         date_label.grid(row=10, column=0)
         
-        Dep_Time_label = Label(add_bus_app, text="Departure Time", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Dep_Time_label = Label(add_bus_app, text="Departure Time", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Dep_Time_label.grid(row=11, column=0)
 
-        Arrival_Time_label = Label(add_bus_app, text="Arrival TIme", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Arrival_Time_label = Label(add_bus_app, text="Arrival TIme", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Arrival_Time_label.grid(row=12, column=0)
 
-        Fare_label = Label(add_bus_app, text="$ Fare", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Fare_label = Label(add_bus_app, text="$ Fare", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Fare_label.grid(row=13, column=0)
 
-        Seats_label = Label(add_bus_app, text="Total Seats", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Seats_label = Label(add_bus_app, text="Total Seats", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Seats_label.grid(row=14, column=0)
 
         # The Add Bus Button (2nd on Add Bus Page)
@@ -248,13 +248,13 @@ def SearchBus():
     bus_type_dropd.grid(row=3, column=1, pady=30)
 
     # Labels
-    loc_From_label = Label(search_bus_app, text="From Location", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    loc_From_label = Label(search_bus_app, text="From Location", font=('PSBold', 10), fg='#fff', bg='#D1456E')
     loc_From_label.grid(row=5, column=0, padx=50)
 
-    loc_To_label = Label(search_bus_app, text="To Loaction", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    loc_To_label = Label(search_bus_app, text="To Loaction", font=('PSBold', 10), fg='#fff', bg='#D1456E')
     loc_To_label.grid(row=6, column=0, padx=10)
 
-    date_label = Label(search_bus_app, text="Date", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    date_label = Label(search_bus_app, text="Date", font=('PSBold', 10), fg='#fff', bg='#D1456E')
     date_label.grid(row=7, column=0, padx=10)    
 
     # Entries
@@ -287,16 +287,16 @@ def SearchBus():
             # Fetching And Showing Details.
             conn = sqlite3.Connection('bus_list.db')
             c = conn.cursor()
-            Agency_name_label=Label(search_app,text="Name",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=0)
-            Bus_Type_label=Label(search_app,text="Type",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=1)
-            loc_From_label=Label(search_app,text="From",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=2)
-            loc_To_label=Label(search_app,text="To",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=3)
-            date_label=Label(search_app,text="Date",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=4)
-            Dep_Time_label=Label(search_app,text="Departure On",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=5)
-            Arrival_Time_label=Label(search_app,text="Arrival On",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=6)
-            Fare_label=Label(search_app,text="Fare",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=7)
-            Seats_label=Label(search_app,text="Seat(s)",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=8)
-            Select_label=Label(search_app,text="Book",font=('Product Sans Regular', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=9)
+            Agency_name_label=Label(search_app,text="Name",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=0)
+            Bus_Type_label=Label(search_app,text="Type",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=1)
+            loc_From_label=Label(search_app,text="From",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=2)
+            loc_To_label=Label(search_app,text="To",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=3)
+            date_label=Label(search_app,text="Date",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=4)
+            Dep_Time_label=Label(search_app,text="Departure On",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=5)
+            Arrival_Time_label=Label(search_app,text="Arrival On",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=6)
+            Fare_label=Label(search_app,text="Fare",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=7)
+            Seats_label=Label(search_app,text="Seat(s)",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=8)
+            Select_label=Label(search_app,text="Book",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=9)
             
             
             l_from = loc_From.get()
@@ -311,15 +311,15 @@ def SearchBus():
             for row in res_data:
                 print(row)
                 v=IntVar()
-                name=Label(search_app,text=row[0], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num, column=0)
-                b_type=Label(search_app,text=row[1], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=1)
-                l_frm=Label(search_app,text=row[2], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=2)
-                l_to=Label(search_app,text=row[3], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=3)
-                l_date=Label(search_app,text=row[4], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=4)
-                dep_t=Label(search_app,text=row[5], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=5)
-                arr_t=Label(search_app,text=row[6], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=6)
-                l_fare=Label(search_app,text=row[7], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=7)
-                l_seat=Label(search_app,text=row[8], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=8)
+                name=Label(search_app,text=row[0], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num, column=0)
+                b_type=Label(search_app,text=row[1], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=1)
+                l_frm=Label(search_app,text=row[2], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=2)
+                l_to=Label(search_app,text=row[3], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=3)
+                l_date=Label(search_app,text=row[4], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=4)
+                dep_t=Label(search_app,text=row[5], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=5)
+                arr_t=Label(search_app,text=row[6], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=6)
+                l_fare=Label(search_app,text=row[7], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=7)
+                l_seat=Label(search_app,text=row[8], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=8)
                 radio_btn=Radiobutton(search_app,variable=v,value=x)
                 radio_btn.grid(row=num,column=9) 
                 x+1
@@ -345,9 +345,9 @@ def SearchBus():
     
 
 # Buttons
-label_add = Label(root, text='(For Operators)', font=('Product Sans Regular', 15), bg="#ffd5bc")
+label_add = Label(root, text='(For Operators)', font=('PSBold', 15), bg="#ffd5bc")
 label_add.place(x=35, y=500)
-label_search = Label(root, text='(For Customers)', font=('Product Sans Regular', 15), bg="#ffd5bc")
+label_search = Label(root, text='(For Customers)', font=('PSBold', 15), bg="#ffd5bc")
 label_search.place(x=610, y=500)
 add_bus_img = PhotoImage(file = './Assets/add_bus.png')
 add_bus = Button(root, image=add_bus_img, bd=0, bg="#ffd5bc", activebackground="#ffd5bc",command=AddBus)
