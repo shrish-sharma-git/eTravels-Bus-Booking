@@ -298,7 +298,7 @@ def SearchBus():
             Seats_label=Label(search_app,text="Seat(s)",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=8)
             Select_label=Label(search_app,text="Book",font=('PSBold', 15), fg='#fff', bg='#D1456E',padx=5, pady=15).grid(row=0,column=9)
             
-            
+            d_click = click.get()
             l_from = loc_From.get()
             l_to = loc_To.get()
             d_date = date.get()
