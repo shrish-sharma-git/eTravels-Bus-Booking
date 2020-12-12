@@ -372,6 +372,13 @@ add_det_btn = ImageTk.PhotoImage(Image.open("./Assets/add_details_btn.png"))
 # Icon Photo (Global)
 icon_photo = PhotoImage(file = "./Assets/root_icon.png")
 
+# Handling The CLosing Protocol
+def on_closing():
+    if messagebox.askokcancel("Quit!", "Do you want to quit?"):
+        root.destroy()
+
+root.protocol("WM_DELETE_WINDOW", on_closing)
+
 #********************************************** DATABASE *************************************************#
 conn = sqlite3.connect('bus_list.db')
 c = conn.cursor()
