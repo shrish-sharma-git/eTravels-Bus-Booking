@@ -12,7 +12,6 @@ import sqlite3
 from PIL import ImageTk,Image
 
 # Adding Custom Font
-pyglet.font.add_file('./Assets/Product Sans Regular.ttf')
 pyglet.font.add_file('./Assets/PSBold.ttf')
 
 #************** SPLASH SCREEN**************#
@@ -105,13 +104,13 @@ def AddBus():
 
     
     # Adding Entry Labels
-    Full_name_label = Label(add_bus_app, text="Full Name", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    Full_name_label = Label(add_bus_app, text="Full Name", font=('PSBold', 10), fg='#fff', bg='#D1456E')
     Full_name_label.grid(row=2, column=0, padx=50)
 
-    Contact_Number_label = Label(add_bus_app, text="Contact Number", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    Contact_Number_label = Label(add_bus_app, text="Contact Number", font=('PSBold', 10), fg='#fff', bg='#D1456E')
     Contact_Number_label.grid(row=3, column=0)
 
-    Address_label = Label(add_bus_app, text="Address", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+    Address_label = Label(add_bus_app, text="Address", font=('PSBold', 10), fg='#fff', bg='#D1456E')
     Address_label.grid(row=4, column=0)
 
 
@@ -152,10 +151,10 @@ def AddBus():
         txtSeats.grid(row=14, column=1, pady=5)
 
         # Labels
-        Agency_name_label = Label(add_bus_app, text="Agency Name", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Agency_name_label = Label(add_bus_app, text="Agency Name", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Agency_name_label.grid(row=6, column=0)
 
-        Bus_Type_label = Label(add_bus_app, text="Bus Type", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
+        Bus_Type_label = Label(add_bus_app, text="Bus Type", font=('PSBold', 10), fg='#fff', bg='#D1456E')
         Bus_Type_label.grid(row=7, column=0)
 
         loc_From_label = Label(add_bus_app, text="From Location", font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E')
@@ -308,22 +307,22 @@ def SearchBus():
             conn.close()
             print(res_data)
             num=3
-            n=1
-            for i in res_data:
-                print(i)
+            x=1
+            for row in res_data:
+                print(row)
                 v=IntVar()
-                name=Label(search_app,text=i[0], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num)
-                b_type=Label(search_app,text=i[1], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=1)
-                l_frm=Label(search_app,text=i[2], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=2)
-                l_to=Label(search_app,text=i[3], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=3)
-                l_date=Label(search_app,text=i[4], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=4)
-                dep_t=Label(search_app,text=i[5], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=5)
-                arr_t=Label(search_app,text=i[6], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=6)
-                l_fare=Label(search_app,text=i[7], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=7)
-                l_seat=Label(search_app,text=i[8], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=8)
-                radio_btn=Radiobutton(search_app,variable=v,value=n)
+                name=Label(search_app,text=row[0], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num, column=0)
+                b_type=Label(search_app,text=row[1], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=1)
+                l_frm=Label(search_app,text=row[2], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=2)
+                l_to=Label(search_app,text=row[3], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=3)
+                l_date=Label(search_app,text=row[4], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=4)
+                dep_t=Label(search_app,text=row[5], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=5)
+                arr_t=Label(search_app,text=row[6], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=6)
+                l_fare=Label(search_app,text=row[7], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=7)
+                l_seat=Label(search_app,text=row[8], font=('Product Sans Regular', 10), fg='#fff', bg='#D1456E').grid(row=num,column=8)
+                radio_btn=Radiobutton(search_app,variable=v,value=x)
                 radio_btn.grid(row=num,column=9) 
-                n+1
+                x+1
                 num=num+1
             def book_tickets():
                 res = v.get()
