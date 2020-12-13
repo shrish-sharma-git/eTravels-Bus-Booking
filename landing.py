@@ -27,7 +27,7 @@ img_splash = Label(s_root, image=render_splash)
 img_splash.image = render_splash
 img_splash.place(x=0, y=0)
 
-s_root.after(100, s_root.destroy)
+s_root.after(5000, s_root.destroy)
 s_root.mainloop()
 
 #************** SPLASH SCREEN**************#
