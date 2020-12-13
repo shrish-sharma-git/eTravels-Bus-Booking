@@ -27,7 +27,7 @@ img_splash = Label(s_root, image=render_splash)
 img_splash.image = render_splash
 img_splash.place(x=0, y=0)
 
-s_root.after(5000, s_root.destroy)
+s_root.after(100, s_root.destroy)
 s_root.mainloop()
 
 #************** SPLASH SCREEN**************#
@@ -319,7 +319,7 @@ def SearchBus():
                 arr_t=Label(search_app,text=row[6], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=6)
                 l_fare=Label(search_app,text=row[7], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=7)
                 l_seat=Label(search_app,text=row[8], font=('PSBold', 10), fg='#fff', bg='#D1456E').grid(row=num,column=8)
-                radio_btn=Radiobutton(search_app,variable=v,value=x)
+                radio_btn=Radiobutton(search_app,variable=v,value=x, bg='#D1456E')
                 radio_btn.grid(row=num,column=9) 
                 x+1
                 num=num+1
@@ -339,6 +339,20 @@ def SearchBus():
                 
     # Search Button
     search_btn = Button(search_bus_app, image=src_btn, bd=0, bg='#D1456E', command=Search).place(x=270, y=240)
+
+    #Delete Database Button(Resetting The Database)
+    def Delete():
+        response = messagebox.askyesno("Warning", "Are you sure you want to delete the database?", parent=search_bus_app)
+        if response == True:            
+            conn = sqlite3.connect('bus_list.db')
+            c=conn.cursor()
+            c.execute("DELETE FROM Bus_Details")
+            conn.commit()
+            messagebox.showinfo("Success!", "Database Deleted Successfully!", parent=search_bus_app)
+        else:
+            messagebox.showinfo("REQUEST ABORTED!", "Your Database Was Not Deleted.", parent=search_bus_app)
+    del_btn = Button(search_bus_app, image=delete_btn, bd=0, bg='#D1456E', command=Delete).place(x=150, y=635)
+    
 
 #********************* SEARCH BUS WINDOW ENDS************************************************************    
     
@@ -367,6 +381,9 @@ home_btn = ImageTk.PhotoImage(Image.open("./Assets/home.png"))
 
 # Add Details Button (Global)
 add_det_btn = ImageTk.PhotoImage(Image.open("./Assets/add_details_btn.png"))
+
+# Add Details Button (Global)
+delete_btn = ImageTk.PhotoImage(Image.open("./Assets/del_btn.png"))
 
 # Icon Photo (Global)
 icon_photo = PhotoImage(file = "./Assets/root_icon.png")
