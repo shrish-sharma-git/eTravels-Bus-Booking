@@ -185,7 +185,6 @@ def AddBus():
         if(len(Agency_name.get()) != 0):
             Add_Bus_Record(Agency_name.get(), Bus_type.get(), loc_From.get(), loc_To.get(), Date.get(), Dep_Time.get(), Arrival_Time.get(), fare.get(), seats.get())
             # Clear input after Submitting
-            # Clear input after Submitting
             Full_name.set('')
             Contact_no.set('')
             Address.set('')
