@@ -28,7 +28,7 @@ This project is developed entirely in [Python](https://www.python.org/). The Maj
 
 
 <!-- GETTING STARTED -->
-## Getting Starte
+## Getting Started
 
 To run this project on your PC, you may fulfil these prerequisites beforehand to ensure that you may not encounter any errors / crashes ;)
 
