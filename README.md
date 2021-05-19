@@ -23,9 +23,8 @@ It is a full-stack Graphical User Interface Project which provides the one-to-on
 
 ### Built With
 This project is developed entirely in [Python](https://www.python.org/). The Major Python Libraries used are:
-* [Tkinter](https://docs.python.org/3/library/tkinter.html)
 * [SQLite](https://www.sqlite.org/index.html)
-
+* [Tkinter](https://docs.python.org/3/library/tkinter.html)
 
 <!-- GETTING STARTED -->
 ## Getting Started
